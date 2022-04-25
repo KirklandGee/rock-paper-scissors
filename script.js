@@ -6,7 +6,6 @@
 - Test the user input against the computer to determine a winner
 - Log that winner's name to the console
 */
-
 const choices = ["rock", "paper", "scissors"]
 let computerPoints = 0
 let userPoints = 0
@@ -19,8 +18,10 @@ function playGame() {
 
     if (userPoints > computerPoints) {
         console.log(`You win :) You won ${userPoints} out of 5 rounds.`)
+        alert(`You win :) You won ${userPoints} out of 5 rounds.`)
     } else {
         console.log(`You lost :( You only won ${userPoints} out of 5 rounds.`)
+        alert(`You lost :( You only won ${userPoints} out of 5 rounds.`)
     }
     userPoints = 0
     computerPoints = 0
@@ -32,6 +33,8 @@ function playRound (computerChoice, userChoice) {
     userChoice = userPlay()
     if (userChoice == computerChoice) {
         console.log("It's a tie!")
+        userPoints++
+        computerPoints++
     } else if (userChoice == "rock" && computerChoice == "scissors") {
         console.log("You win! :) Rock smashes scissors")
         userPoints++
@@ -69,5 +72,3 @@ function userPlay () {
     
     return userChoice
 }
-
-playGame()
