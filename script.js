@@ -64,7 +64,6 @@ function playRound (userChoice) {
         userPoints = 0
         computerPoints = 0
         userRoundsWon += 1
-        results.appendChild(document.createElement(p).textContent = `Rounds won: ${userRoundsWon}`)
     } else if (computerPoints == 5) {
         results.textContent = "YOU LOST YOU CRUSTY BITCH GET FUKT"
         userPoints = 0
