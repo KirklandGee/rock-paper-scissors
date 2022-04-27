@@ -6,45 +6,40 @@
 - Test the user input against the computer to determine a winner
 - Log that winner's name to the console
 */
-const choices = ["rock", "paper", "scissors"]
+const choices = ['rock', 'paper', 'scissors']
 let computerPoints = 0
 let userPoints = 0
 let userRoundsWon = 0
 let computerRoundsWon = 0
 
 //Event listeners for the user choice buttons
-
 const rock = document.querySelector("#rock")
 const paper = document.querySelector("#paper")
 const scissors = document.querySelector("#scissors")
 const results = document.querySelector(".results")
 const userPointDisplay = document.querySelector(".user-points")
 const computerPointDisplay = document.querySelector(".computer-points")
-
 userPointDisplay.textContent = userPoints
 computerPointDisplay.textContent = computerPoints
-
 rock.addEventListener('click', () => {
     playRound('rock')
-})
+    })
 paper.addEventListener('click', () => {
     playRound('paper')
-})
+    })
 scissors.addEventListener('click', () => {
     playRound('scissors')
-})
+    })
 
 // Takes the random computer choice and user input and compares their choices against a set of options to choose a winner
 function playRound (userChoice) {
     computerChoice = computerPlay()
     if (userChoice == computerChoice) {
         results.textContent = `You both threw ${userChoice}`
-        userPoints++
-        computerPoints++
     } else if (userChoice == "rock" && computerChoice == "scissors") {
         userPoints++
     } else if (userChoice == "rock" && computerChoice == "paper") {
-        userPoints++
+        computerPoints++
     } else if (userChoice == "scissors" && computerChoice == "rock") {
         computerPoints++
     } else if (userChoice == "scissors" && computerChoice == "paper") {
@@ -54,9 +49,15 @@ function playRound (userChoice) {
     } else if (userChoice == "paper" && computerChoice == "scissors") {
         computerPoints++
     }
+
     results.textContent = `You threw: ${userChoice}. \nComputer Threw: ${computerChoice}`
     userPointDisplay.textContent = userPoints
     computerPointDisplay.textContent = computerPoints
+    restartRound()
+}
+
+// When score reaches 5 for either player, reset scores and start over.
+function restartRound () {
     if (userPoints == 5 && computerPoints == 5) {
         results.textContent = "IT'S A TIE. WOW YOU SUCK"
     } else if (userPoints == 5) {
