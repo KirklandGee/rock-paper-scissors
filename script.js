@@ -10,48 +10,47 @@ const choices = ["rock", "paper", "scissors"]
 let computerPoints = 0
 let userPoints = 0
 
-// Uses the other functions to play 5 rounds of the game and decide a winner
-function playGame() {
-    for (i=0; i<5; i++) {
-        playRound()
-    }
+//Event listeners for the user choice buttons
 
-    if (userPoints > computerPoints) {
-        console.log(`You win :) You won ${userPoints} out of 5 rounds.`)
-        alert(`You win :) You won ${userPoints} out of 5 rounds.`)
-    } else {
-        console.log(`You lost :( You only won ${userPoints} out of 5 rounds.`)
-        alert(`You lost :( You only won ${userPoints} out of 5 rounds.`)
-    }
-    userPoints = 0
-    computerPoints = 0
-}
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors")
+const results = document.querySelector(".results")
+
+rock.addEventListener('click', () => {
+    playRound('rock')
+})
+paper.addEventListener('click', () => {
+    playRound('paper')
+})
+scissors.addEventListener('click', () => {
+    playRound('scissors')
+})
 
 // Takes the random computer choice and user input and compares their choices against a set of options to choose a winner
-function playRound (computerChoice, userChoice) {
+function playRound (userChoice) {
     computerChoice = computerPlay()
-    userChoice = userPlay()
     if (userChoice == computerChoice) {
-        console.log("It's a tie!")
+        results.textContent = 'It\'s a tie!'
         userPoints++
         computerPoints++
     } else if (userChoice == "rock" && computerChoice == "scissors") {
-        console.log("You win! :) Rock smashes scissors")
+        results.textContent = "You win! :) Rock smashes scissors"
         userPoints++
     } else if (userChoice == "rock" && computerChoice == "paper") {
-        console.log("You lose! :( Paper covers rock")
+        results.textContent = "You lose! :( Paper covers rock"
         userPoints++
     } else if (userChoice == "scissors" && computerChoice == "rock") {
-        console.log("You lose! :( Rock smashes scissors")
+        results.textContent = "You lose! :( Rock smashes scissors"
         computerPoints++
     } else if (userChoice == "scissors" && computerChoice == "paper") {
-        console.log("You win! :) Scissors cuts paper")
+        results.textContent = "You win! :) Scissors cuts paper"
         userPoints++
     } else if (userChoice == "paper" && computerChoice == "rock") {
-        console.log("You win! :) Paper covers rock")
+        results.textContent = "You win! :) Paper covers rock"
         computerPoints++
     } else if (userChoice == "paper" && computerChoice == "scissors") {
-        console.log("You lose! :( Scissors cuts paper")
+        results.textContent = "You lose! :( Scissors cuts paper"
         computerPoints++
     }
 }
