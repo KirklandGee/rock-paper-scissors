@@ -9,6 +9,8 @@
 const choices = ["rock", "paper", "scissors"]
 let computerPoints = 0
 let userPoints = 0
+let userRoundsWon = 0
+let computerRoundsWon = 0
 
 //Event listeners for the user choice buttons
 
@@ -16,6 +18,11 @@ const rock = document.querySelector("#rock")
 const paper = document.querySelector("#paper")
 const scissors = document.querySelector("#scissors")
 const results = document.querySelector(".results")
+const userPointDisplay = document.querySelector(".user-points")
+const computerPointDisplay = document.querySelector(".computer-points")
+
+userPointDisplay.textContent = userPoints
+computerPointDisplay.textContent = computerPoints
 
 rock.addEventListener('click', () => {
     playRound('rock')
@@ -31,27 +38,38 @@ scissors.addEventListener('click', () => {
 function playRound (userChoice) {
     computerChoice = computerPlay()
     if (userChoice == computerChoice) {
-        results.textContent = 'It\'s a tie!'
+        results.textContent = `You both threw ${userChoice}`
         userPoints++
         computerPoints++
     } else if (userChoice == "rock" && computerChoice == "scissors") {
-        results.textContent = "You win! :) Rock smashes scissors"
         userPoints++
     } else if (userChoice == "rock" && computerChoice == "paper") {
-        results.textContent = "You lose! :( Paper covers rock"
         userPoints++
     } else if (userChoice == "scissors" && computerChoice == "rock") {
-        results.textContent = "You lose! :( Rock smashes scissors"
         computerPoints++
     } else if (userChoice == "scissors" && computerChoice == "paper") {
-        results.textContent = "You win! :) Scissors cuts paper"
         userPoints++
     } else if (userChoice == "paper" && computerChoice == "rock") {
-        results.textContent = "You win! :) Paper covers rock"
         computerPoints++
     } else if (userChoice == "paper" && computerChoice == "scissors") {
-        results.textContent = "You lose! :( Scissors cuts paper"
         computerPoints++
+    }
+    results.textContent = `You threw: ${userChoice}. \nComputer Threw: ${computerChoice}`
+    userPointDisplay.textContent = userPoints
+    computerPointDisplay.textContent = computerPoints
+    if (userPoints == 5 && computerPoints == 5) {
+        results.textContent = "IT'S A TIE. WOW YOU SUCK"
+    } else if (userPoints == 5) {
+        results.textContent = "YOU WIN!!!!!!!!! LEGGGOOOOOO MOFOOOOO"
+        userPoints = 0
+        computerPoints = 0
+        userRoundsWon += 1
+        results.appendChild(document.createElement(p).textContent = `Rounds won: ${userRoundsWon}`)
+    } else if (computerPoints == 5) {
+        results.textContent = "YOU LOST YOU CRUSTY BITCH GET FUKT"
+        userPoints = 0
+        computerPoints = 0
+        computerRoundsWon += 1
     }
 }
 
